@@ -24,10 +24,13 @@ class Stat():
         self.speed = int(speed)
 
     def __repr__(self):
-        return (f"Stat({self.intellect}, {self.tenacity}, {self.strength}, {self.speed})")
+        return f"Stat({self.intellect}, {self.tenacity}, {self.strength}, {self.speed})"
 
     def __add__(self, other: "Stat"):
-        return (Stat(*[getattr(self, _, 0) + getattr(other, _, 0) for _ in Stat.core_stats]))
+        return Stat(*[getattr(self, _, 0) + getattr(other, _, 0) for _ in Stat.core_stats])
+
+    def __sub__(self, other: "Stat"):
+        return Stat(*[getattr(self, _, 0) - getattr(other, _, 0) for _ in Stat.core_stats])
 
     def __eq__(self, other: "Stat"):
         return self.__dict__ == other.__dict__

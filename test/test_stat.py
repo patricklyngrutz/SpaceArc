@@ -18,3 +18,7 @@ class test_Stats(unittest.TestCase):
             Stat.combine(self.stats1, self.stats2, self.stats3) ==
             Stat(1, 1, 3, -95)
         )
+
+    def test_sub(self):
+        self.stats4 = self.stats2 - self.stats1
+        self.assertTrue(self.stats4 == Stat(0, -2, -2, -4))

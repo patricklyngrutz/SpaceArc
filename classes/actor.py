@@ -11,15 +11,27 @@ class Actor():
             self.effects = []
 
     def __iadd__(self, other):
+
         if type(other) == classes.Item:
             self.items.append(other)
-            return (self)
+            return self
         elif type(other) == classes.Effect:
             self.effects.append(other)
-            return (self)
+            return self
         elif type(other) == classes.Stat:
             self.base_stats += other
-            return (self)
+            return self
+
+    def __isub__(self, other):
+        if type(other) == classes.Item:
+            self.items.remove(other)
+            return self
+        elif type(other) == classes.Effect:
+            self.effects.remove(other)
+            return self
+        elif type(other) == classes.Stat:
+            self.base_stats -= other
+            return self
 
     @property
     def stats(self):
@@ -30,6 +42,7 @@ class Actor():
                 *self.effects
             )
         )
+
 
 #    @property
 #    def __getitem__(self, item):
